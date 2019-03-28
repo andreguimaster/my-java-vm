@@ -39,3 +39,8 @@ package { ["openjdk-8-jdk"]:
     ensure => present,
     require => Exec["apt-update"]
 }
+
+package { ["maven"]:
+    ensure => present,
+    require => Package["openjdk-8-jdk"]
+}
