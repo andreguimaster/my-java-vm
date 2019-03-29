@@ -1,5 +1,6 @@
 Vagrant.configure("2") do |config|
-	config.vm.box = "hashicorp/precise64"
+	#config.vm.box = "hashicorp/precise64"
+	config.vm.box = "bento/ubuntu-14.04"
 	
 	config.vm.define :java do |java_config|
 		java_config.vm.network "forwarded_port", guest: 8080, host: 8081
@@ -18,6 +19,7 @@ Vagrant.configure("2") do |config|
         vb.memory = 4096
         vb.cpus = 3
 
+		vb.customize ["modifyvm", :id, "--vram", "64"]
 		vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     	vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
     end
