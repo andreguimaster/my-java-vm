@@ -45,6 +45,11 @@ package { ["maven"]:
     require => Package["openjdk-8-jdk"]
 }
 
+package { ["git"]:
+    ensure => present,
+    require => Package["apt-update"]
+}
+
 package { ["snapd"]:
     ensure => present,
     require => Exec["apt-update"]
