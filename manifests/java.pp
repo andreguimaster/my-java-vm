@@ -44,3 +44,14 @@ package { ["maven"]:
     ensure => present,
     require => Package["openjdk-8-jdk"]
 }
+
+package { ["snapd"]:
+    ensure => present,
+    require => Exec["apt-update"]
+}
+
+exec { "eclipse":
+	command => "sudo snap install eclipse --classic",
+	path => "/usr/bin",
+	require => Package["snapd"]
+}
