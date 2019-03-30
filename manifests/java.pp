@@ -47,7 +47,7 @@ package { ["maven"]:
 
 package { ["git"]:
     ensure => present,
-    require => Package["apt-update"]
+    require => Exec["apt-update"]
 }
 
 package { ["snapd"]:
