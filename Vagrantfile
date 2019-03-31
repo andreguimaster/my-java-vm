@@ -1,5 +1,4 @@
 Vagrant.configure("2") do |config|
-	#config.vm.box = "hashicorp/precise64"
 	config.vm.box = "bento/ubuntu-14.04"
 	
 	config.vm.define :java do |java_config|
