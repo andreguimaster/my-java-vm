@@ -1,7 +1,7 @@
 # my-java-vm
 This is a Vagrantfile that describes a Ubuntu 14.04 virtual machine with graphical user interface and some essential tools for Java development.
 
-##Developers Tools
+## Developers Tools
 This VM provides:
 - OpenJDK 8
 - Eclipse IDE
