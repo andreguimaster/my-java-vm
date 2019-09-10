@@ -15,10 +15,10 @@ Vagrant.configure("2") do |config|
 	# Habilita interface gráfica, configura memória, define número de cpus e configura o proxy
 	config.vm.provider :virtualbox do |vb|
         vb.gui = true
-        vb.memory = 4096
-        vb.cpus = 3
+        vb.memory = 10240
+        vb.cpus = 5
 
-		vb.customize ["modifyvm", :id, "--vram", "64"]
+		vb.customize ["modifyvm", :id, "--vram", "256"]
 		vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     	vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
     end
