@@ -1,11 +1,6 @@
-package { ["software-properties-common", "python-software-properties"]:
-    ensure => installed
-}
-
 exec { "add-java-repo":
 	command => "sudo add-apt-repository -y ppa:openjdk-r/ppa",
-	path => "/usr/bin",
-	require => Package["software-properties-common", "python-software-properties"]
+	path => "/usr/bin"
 }
 
 exec { "apt-key-update":
@@ -35,14 +30,14 @@ package { ["ubuntu-restricted-extras"]:
     require => Exec["apt-update"]
 }
 
-package { ["openjdk-8-jdk"]:
+package { ["openjdk-11-jdk"]:
     ensure => present,
     require => Exec["apt-update"]
 }
 
 package { ["maven"]:
     ensure => present,
-    require => Package["openjdk-8-jdk"]
+    require => Package["openjdk-11-jdk"]
 }
 
 package { ["git"]:
@@ -60,3 +55,20 @@ exec { "eclipse":
 	path => "/usr/bin",
 	require => Package["snapd"]
 }
+
+exec { "add-cpg-docker-key":
+	command => "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -",
+	path => "/usr/bin"
+}
+
+exec { "add-docker-repo":
+	command => "sudo add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable && sudo apt-get update\"",
+	path => "/usr/bin",
+	require => Exec["add-cpg-docker-key"]
+}
+
+package { ["docker-ce"]:
+    ensure => present,
+    require => Exec["add-docker-repo"]
+}
+

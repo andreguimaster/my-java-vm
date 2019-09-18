@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
-	config.vm.box = "bento/ubuntu-14.04"
+	config.vm.box = "bento/ubuntu-18.04"
 	
-	config.vm.define :java do |java_config|
+	config.vm.define :java2 do |java_config|
 		java_config.vm.network "forwarded_port", guest: 8080, host: 8081
 		java_config.vm.provision "shell", inline: "sudo apt-get update && sudo apt-get install -y puppet"
 		
